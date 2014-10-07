@@ -4,8 +4,6 @@ window.Notifine = (function () {
     container: '.notifine-notifications'
   };
 
-  var notifications = {};
-
   var GenerateID = function () {
     var generated = "";
     var possible = "bdfhjlnprtvxz0123456789";
@@ -14,7 +12,7 @@ window.Notifine = (function () {
       generated += possible.charAt(Math.floor(Math.random() * possible.length));
     }
 
-    if (typeof(notifications[generated])==='undefined') {
+    if (typeof(Notifine.notifications[generated])==='undefined') {
       return generated;
     } else {
       return GenerateID();
@@ -34,12 +32,17 @@ window.Notifine = (function () {
   }
 
   var notifine = {
+    notifications: {},
     create: function (data) {
       if (typeof(data) === "object"){
         data.content = data.content || {};
         data.content.title = data.content.title || "";
         data.content.body = data.content.body || "";
         data.type = data.type || "";
+        data.events = data.events || {};
+        data.events.onclick = data.events.onclick || function(){};
+        data.events.onmouseenter = data.events.onmouseenter || function(){};
+        data.events.onmouseleave = data.events.onmouseleave || function(){};
         if (typeof(data.time)==='undefined') { data.time = 5000; }
 
         var $notification = $('<div class="notifine-notification ' + data.type + '" style="display: none;"></div>');
@@ -48,7 +51,7 @@ window.Notifine = (function () {
         var newnotif = data;
         newnotif.id = GenerateID();
 
-        notifications[newnotif.id] = newnotif;
+        Notifine.notifications[newnotif.id] = newnotif;
 
         $notification.attr('data-id',newnotif.id).html($notification_content);
         $(props.container).append($notification).children().last().fadeIn(300);
@@ -66,11 +69,11 @@ window.Notifine = (function () {
       }
     },
     destroy: function (id) {
-      if (typeof(notifications[id]) === 'object'){
-        if (typeof(notifications[id].timer) !== 'undefined') {
-            clearTimeout(notifications[id].timer);
+      if (typeof(Notifine.notifications[id]) === 'object'){
+        if (typeof(Notifine.notifications[id].timer) !== 'undefined') {
+            clearTimeout(Notifine.notifications[id].timer);
         }
-        delete notifications[id];
+        delete Notifine.notifications[id];
         $(props.container).find('[data-id="' + id + '"]').fadeOut(200,function(){$(this).remove();})
         return true;
       } else {
@@ -99,8 +102,17 @@ Notifine.load({debugmode:true});
 
 $(document).ready(function(){
   $('.notifine-notifications').on('click','.notifine-notification',function(){
-    var $this = $(this);
-    Notifine.destroy($this.attr('data-id'));
+    var id = $(this).attr('data-id');
+    Notifine.notifications[id].events.onclick();
+    Notifine.destroy(id);
+  });
+  $('.notifine-notifications').on('mouseenter','.notifine-notification',function(){
+    var id = $(this).attr('data-id');
+    Notifine.notifications[id].events.onmouseenter();
+  });
+  $('.notifine-notifications').on('mouseleave','.notifine-notification',function(){
+    var id = $(this).attr('data-id');
+    Notifine.notifications[id].events.onmouseleave();
   });
 });
 
@@ -122,5 +134,24 @@ $('.trigger').click(function(){
       "body" : bodys[Math.floor(Math.random() * bodys.length)]
     },
     type: colours[Math.floor(Math.random() * colours.length)]
-  })
-})
+  });
+});
+
+Notifine.create({
+  content : {
+    body : "You have been notified"
+  },
+  type : "green",
+  time : 0,
+  events : {
+    onclick : function () {
+      console.log('clicked');
+    },
+    onmouseenter : function () {
+      console.log('mouse enter');
+    },
+    onmouseleave : function () {
+      console.log('mouse leave');
+    }
+  }
+});
