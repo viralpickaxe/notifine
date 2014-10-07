@@ -22,20 +22,21 @@ body {
   background: #34495e;
 }
 
-.notifications {
+.notifine-notifications {
   width: 40%;
   position: fixed;
   bottom: 0.1em;
   right: 0.5em;
   max-width: 250px;
+  z-index: 9999;
 }
 
-.notification{font-size:9px;}
-@media (max-width: 700px){.notification{font-size:8px;}.notifications{max-width: 200px;}}
-@media (max-width: 500px){.notification{font-size:7px;}.notifications{max-width: 150px;}}
-@media (max-width: 300px){.notification{font-size:6px;}.notifications{max-width: 100px;}}
+.notifine-notification{font-size:9px;}
+@media (max-width: 700px){.notifine-notification{font-size:8px;}.notifine-notifications{max-width: 200px;}}
+@media (max-width: 500px){.notifine-notification{font-size:7px;}.notifine-notifications{max-width: 150px;}}
+@media (max-width: 300px){.notifine-notification{font-size:6px;}.notifine-notifications{max-width: 100px;}}
 
-.notification {
+.notifine-notification {
   display: flex;
   margin: 0 0 5px 0;
   max-width: 350px;
