@@ -31,13 +31,12 @@ body {
   max-height: 90%;
   overflow-y: scroll;
   overflow-x: hidden;
-  z-index: 9999;
 }
 
 .notifine-notification{font-size:9px;}
 @media (max-width: 700px){.notifine-notification{font-size:8px;}.notifine-notifications{max-width: 200px;}}
-@media (max-width: 500px){.notifine-notification{font-size:7px;}.notifine-notifications{max-width: 150px;}}
-@media (max-width: 300px){.notifine-notification{font-size:6px;}.notifine-notifications{max-width: 100px;}}
+@media (max-width: 500px){.notifine-notification{font-size:8px;}.notifine-notifications{max-width: 150px;}}
+@media (max-width: 300px){.notifine-notification{font-size:8px;}.notifine-notifications{min-width: 150px; max-width: 150px;}}
 
 .notifine-notification {
   display: flex;
@@ -45,6 +44,7 @@ body {
   max-width: 350px;
   min-height: 70px;
   cursor: pointer;
+  z-index: 9999;
   &:hover {
     opacity: 0.7;
     @include transition(opacity,0.2s,ease);

@@ -9,8 +9,7 @@ body {
   max-width: 250px;
   max-height: 90%;
   overflow-y: scroll;
-  overflow-x: hidden;
-  z-index: 9999; }
+  overflow-x: hidden; }
 
 .notifine-notification {
   font-size: 9px; }
@@ -23,22 +22,24 @@ body {
     max-width: 200px; } }
 @media (max-width: 500px) {
   .notifine-notification {
-    font-size: 7px; }
+    font-size: 8px; }
 
   .notifine-notifications {
     max-width: 150px; } }
 @media (max-width: 300px) {
   .notifine-notification {
-    font-size: 6px; }
+    font-size: 8px; }
 
   .notifine-notifications {
-    max-width: 100px; } }
+    min-width: 150px;
+    max-width: 150px; } }
 .notifine-notification {
   display: flex;
   margin: 0 0 5px 0;
   max-width: 350px;
   min-height: 70px;
-  cursor: pointer; }
+  cursor: pointer;
+  z-index: 9999; }
   .notifine-notification:hover {
     opacity: 0.7;
     -webkit-transition: opacity 0.2s ease;
