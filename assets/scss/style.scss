@@ -36,7 +36,7 @@ body {
 .notifine-notification{font-size:9px;}
 @media (max-width: 700px){.notifine-notification{font-size:8px;}.notifine-notifications{max-width: 200px;}}
 @media (max-width: 500px){.notifine-notification{font-size:8px;}.notifine-notifications{max-width: 150px;}}
-@media (max-width: 300px){.notifine-notification{font-size:8px;}.notifine-notifications{min-width: 150px; max-width: 150px;}}
+@media (max-width: 300px){.notifine-notification{font-size:8px;h1{font-size: 1.7em !important;}}.notifine-notifications{min-width: 150px; max-width: 150px;}}
 
 .notifine-notification {
   display: flex;
