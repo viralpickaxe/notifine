@@ -13,6 +13,5 @@ notifine *(pronounced [noh-tih-FH-hyne])* is a lightweight but powerful jQuery n
 * Event callbacks for many different actions
 * Simple but powerful API for creating, detecting and destroying notifications easily
 
-
-
-**For documentation and more infomation [click here](http://notifine.iamjamiedavies.com)**
+## Demo and Documentation
+[http://notifine.iamjamiedavies.com](http://notifine.iamjamiedavies.com)
