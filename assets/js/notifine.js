@@ -1,10 +1,10 @@
 window.Notifine = (function () {
   var props = {
     debugmode: false,
-    container: $('.notifine-notifications')
+    container: '.notifine-notifications'
   };
 
-  window.notifications = {};
+  var notifications = {};
 
   var GenerateID = function () {
     var generated = "";
@@ -40,7 +40,7 @@ window.Notifine = (function () {
         data.content.title = data.content.title || "";
         data.content.body = data.content.body || "";
         data.type = data.type || "";
-        if (typeof(data.time)==='undefined') { data.time = 3000; }
+        if (typeof(data.time)==='undefined') { data.time = 5000; }
 
         var $notification = $('<div class="notifine-notification ' + data.type + '" style="display: none;"></div>');
         var $notification_content = $('<div class="info"><h1>' + data.content.title + '</h1><p>' + data.content.body + '</p></div><div class="side"></div>');
@@ -51,10 +51,10 @@ window.Notifine = (function () {
         notifications[newnotif.id] = newnotif;
 
         $notification.attr('data-id',newnotif.id).html($notification_content);
-        props.container.append($notification).children().last().fadeIn(300);
+        $(props.container).append($notification).children().last().fadeIn(300);
         console.log(newnotif);
         if(data.time>0){
-          setTimeout("Notifine.destroy('" + newnotif.id + "')",data.time);
+          newnotif.timer = setTimeout("Notifine.destroy('" + newnotif.id + "')",data.time);
         }
         return newnotif;
       } else {
@@ -63,9 +63,12 @@ window.Notifine = (function () {
       }
     },
     destroy: function (id) {
-      if (typeof(notifications[id])==='object'){
+      if (typeof(notifications[id]) === 'object'){
+        if (typeof(notifications[id].timer) !== 'undefined') {
+            clearTimeout(notifications[id].timer);
+        }
         delete notifications[id];
-        props.container.find('[data-id="' + id + '"]').fadeOut(200,function(){$(this).remove();})
+        $(props.container).find('[data-id="' + id + '"]').fadeOut(200,function(){$(this).remove();})
         return true;
       } else {
         Debug("Invalid notification id","error");
@@ -80,6 +83,8 @@ window.Notifine = (function () {
         return false;
       }
 
+      $(document.body).prepend($('<div class="notifine-notifications"></div>'));
+
       Debug("notifine loaded!","log");
     }
   };
@@ -89,21 +94,30 @@ window.Notifine = (function () {
 
 Notifine.load({debugmode:true});
 
+$(document).ready(function(){
+  $('.notifine-notifications').on('click','.notifine-notification',function(){
+    var $this = $(this);
+    Notifine.destroy($this.attr('data-id'));
+  });
+});
 
-// Demo notifications
 
-setTimeout(function(){
-  Notifine.create({content:{title:"This is a notification",body:"You have been notified"},type:"green"});
-},500);
-setTimeout(function(){
-  Notifine.create({content:{title:"This is a notification",body:"You have been notified"},type:"grey",time:5000});
-},1500);
-setTimeout(function(){
-  Notifine.create({content:{title:"@somebody followed you",body:"You have a new follower! Feel the fame flow through your vains!"},type:"red",time:0});
-},3000);
-setTimeout(function(){
-  Notifine.create({content:{title:"Windows 10 preview is here",body:"Windows 10 represents the first step of a whole new generation of Windows. Windows 10 unlocks new experiences for customers to work, play and connect."},type:"orange"});
-},3200);
-setTimeout(function(){
-  Notifine.create({content:{title:"8 min to home with a bicycle",body:"Bicycle 2.4 km, 8 min. Use caution - may involve errors or sections not suited for bicyclingsa"},type:"purple"});
-},4000);
+// Demo trigger notifications
+
+$('.trigger').click(function(){
+  var colours = ["","blue","red","orange","purple","green"];
+  var bodys = [
+    "You have been notified",
+    "You have a new follower! Feel the fame flow through your vains!",
+    "Windows 10 represents the first step of a whole new generation of Windows. Windows 10 unlocks new experiences for customers to work, play and connect.",
+    "Bicycle 2.4 km, 8 min. Use caution - may involve errors or sections not suited for bicyclings. ya content."
+  ];
+
+  Notifine.create({
+    content: {
+      "title" : "This is a notification",
+      "body" : bodys[Math.floor(Math.random() * bodys.length)]
+    },
+    type: colours[Math.floor(Math.random() * colours.length)]
+  })
+})

@@ -7,7 +7,9 @@ body {
   bottom: 0.1em;
   right: 0.5em;
   max-width: 250px;
-  z-index: 999; }
+  max-height: 90%;
+  overflow: scroll;
+  z-index: 9999; }
 
 .notifine-notification {
   font-size: 9px; }
