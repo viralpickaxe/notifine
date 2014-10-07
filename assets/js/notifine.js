@@ -52,10 +52,13 @@ window.Notifine = (function () {
 
         $notification.attr('data-id',newnotif.id).html($notification_content);
         $(props.container).append($notification).children().last().fadeIn(300);
-        console.log(newnotif);
+        $(props.container).scrollTop($(props.container)[0].scrollHeight);
+
         if(data.time>0){
           newnotif.timer = setTimeout("Notifine.destroy('" + newnotif.id + "')",data.time);
         }
+
+        console.log(newnotif);
         return newnotif;
       } else {
         Debug("Invalid input to Notifine.create(). Must pass object","error");

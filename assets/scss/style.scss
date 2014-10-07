@@ -26,10 +26,11 @@ body {
   width: 40%;
   position: fixed;
   bottom: 0.1em;
-  right: 0.5em;
+  right: 0.3em;
   max-width: 250px;
   max-height: 90%;
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
   z-index: 9999;
 }
 
