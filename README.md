@@ -8,7 +8,7 @@ notifine *(pronounced [noh-tih-FH-hyne])* is a lightweight but powerful jQuery n
 
 ## Features
 
-* Default notifications are responsive and very good looking (imo :3)
-* The look, positioning and behaviour of the notifications is fully customizable 
-* Event callbacks for actions, including  onclick, onmouseenter, onmouseleave and ondismiss
+* Default notifications are responsive and good looking
+* The look, positioning and behaviour of the notifications are fully customizable 
+* Event callbacks for many different actions
 * Simple but powerful API for creating, detecting and destroying notifications easily
