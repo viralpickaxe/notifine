@@ -40,9 +40,9 @@ window.Notifine = (function () {
         data.content.body = data.content.body || "";
         data.type = data.type || "";
         data.events = data.events || {};
-        data.events.onclick = data.events.onclick || function(){};
-        data.events.onmouseenter = data.events.onmouseenter || function(){};
-        data.events.onmouseleave = data.events.onmouseleave || function(){};
+        data.events.onclick = data.events.onclick || function(){return true;};
+        data.events.onmouseenter = data.events.onmouseenter || function(){return true;};
+        data.events.onmouseleave = data.events.onmouseleave || function(){return true;};
         if (typeof(data.time)==='undefined') { data.time = 5000; }
 
         var $notification = $('<div class="notifine-notification ' + data.type + '" style="display: none;"></div>');
@@ -103,16 +103,31 @@ Notifine.load({debugmode:true});
 $(document).ready(function(){
   $('.notifine-notifications').on('click','.notifine-notification',function(){
     var id = $(this).attr('data-id');
-    Notifine.notifications[id].events.onclick();
-    Notifine.destroy(id);
+    if (typeof(Notifine.notifications[id]) !== 'undefined') {
+      var evt = Notifine.notifications[id].events.onclick();
+      if (evt) { Notifine.destroy(id); }
+      return evt;
+    } else {
+      return false;
+    }
   });
   $('.notifine-notifications').on('mouseenter','.notifine-notification',function(){
     var id = $(this).attr('data-id');
-    Notifine.notifications[id].events.onmouseenter();
+    if (typeof(Notifine.notifications[id]) !== 'undefined') {
+      var evt = Notifine.notifications[id].events.onmouseenter();
+      return evt;
+    } else {
+      return false;
+    }
   });
   $('.notifine-notifications').on('mouseleave','.notifine-notification',function(){
     var id = $(this).attr('data-id');
-    Notifine.notifications[id].events.onmouseleave();
+    if (typeof(Notifine.notifications[id]) !== 'undefined') {
+      var evt = Notifine.notifications[id].events.onmouseleave();
+      return evt;
+    } else {
+      return false;
+    }
   });
 });
 
@@ -139,19 +154,23 @@ $('.trigger').click(function(){
 
 Notifine.create({
   content : {
-    body : "You have been notified"
+    title : "Awesome Notification!",
+    body : "This notification cannot be dismissed! It also has event listeners for, click, mouse enter and mouse leave."
   },
-  type : "green",
+  type : "orange",
   time : 0,
   events : {
     onclick : function () {
       console.log('clicked');
+      return false; // So it cannot be dismissed
     },
     onmouseenter : function () {
       console.log('mouse enter');
+      return true;
     },
     onmouseleave : function () {
       console.log('mouse leave');
+      return true;
     }
   }
 });
