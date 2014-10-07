@@ -1,0 +1,100 @@
+@mixin color($color) {
+  .side {
+    background: $color;
+    border-bottom-color: darken($color, 10%);
+  }
+}
+
+@mixin button($color) {
+  background: $color !important;
+  border-bottom-color: darken($color, 10%) !important;
+}
+
+@mixin transition($transition-property, $transition-time, $method) {
+  -webkit-transition: $transition-property $transition-time $method;
+  -moz-transition: $transition-property $transition-time $method;
+  -ms-transition: $transition-property $transition-time $method;
+  -o-transition: $transition-property $transition-time $method;
+  transition: $transition-property $transition-time $method;
+}
+
+body {
+  background: #34495e;
+}
+
+.notifications {
+  width: 40%;
+  position: fixed;
+  bottom: 0.1em;
+  right: 0.5em;
+  max-width: 250px;
+}
+
+.notification{font-size:9px;}
+@media (max-width: 700px){.notification{font-size:8px;}.notifications{max-width: 200px;}}
+@media (max-width: 500px){.notification{font-size:7px;}.notifications{max-width: 150px;}}
+@media (max-width: 300px){.notification{font-size:6px;}.notifications{max-width: 100px;}}
+
+.notification {
+  display: flex;
+  margin: 0 0 5px 0;
+  max-width: 350px;
+  min-height: 70px;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.7;
+    @include transition(opacity,0.2s,ease);
+  }
+
+  .info {
+    flex: 1;
+    padding: 0.6em 0.6em 0.3em 0.6em;
+    background: #ecf0f1;
+    border-radius: 3px 0 0 3px;
+    border-bottom: 0.3em solid darken(#ecf0f1, 15%);
+    
+    h1 {
+      margin: 0;
+      padding: 0;
+      font-family: arial, sans-serif;
+      font-size: 2em;
+      color: #111;
+      word-wrap: break-word;
+    }
+    
+    p {
+      margin: 0;
+      padding: 0.2em 0;
+      font-family: arial, sans-serif;
+      font-size: 1.0em;
+      color: #666;
+    }
+  }
+  
+  .side {
+    width: 0.6em;
+    border-radius: 0 3px 3px 0;
+    border-bottom: 0.3em solid;
+  }
+  
+  @include color(#7f8c8d);
+  
+  &.blue {
+    @include color(#2980b9);   
+  }
+  &.red {
+    @include color(#e74c3c);
+  }
+  &.orange {
+    @include color(#f39c12);
+  }
+  &.purple {
+    @include color(#9b59b6);
+  }
+  &.green {
+    @include color(#27ae60);
+  }
+  &.gray {
+    @include color(#95a5a6);
+  }
+}

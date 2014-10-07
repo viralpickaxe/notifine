@@ -1,0 +1,88 @@
+body {
+  background: #34495e; }
+
+.notifications {
+  width: 40%;
+  position: fixed;
+  bottom: 0.1em;
+  right: 0.5em;
+  max-width: 250px; }
+
+.notification {
+  font-size: 9px; }
+
+@media (max-width: 700px) {
+  .notification {
+    font-size: 8px; }
+
+  .notifications {
+    max-width: 200px; } }
+@media (max-width: 500px) {
+  .notification {
+    font-size: 7px; }
+
+  .notifications {
+    max-width: 150px; } }
+@media (max-width: 300px) {
+  .notification {
+    font-size: 6px; }
+
+  .notifications {
+    max-width: 100px; } }
+.notification {
+  display: flex;
+  margin: 0 0 5px 0;
+  max-width: 350px;
+  min-height: 70px;
+  cursor: pointer; }
+  .notification:hover {
+    opacity: 0.7;
+    -webkit-transition: opacity 0.2s ease;
+    -moz-transition: opacity 0.2s ease;
+    -ms-transition: opacity 0.2s ease;
+    -o-transition: opacity 0.2s ease;
+    transition: opacity 0.2s ease; }
+  .notification .info {
+    flex: 1;
+    padding: 0.6em 0.6em 0.3em 0.6em;
+    background: #ecf0f1;
+    border-radius: 3px 0 0 3px;
+    border-bottom: 0.3em solid #c0cdd1; }
+    .notification .info h1 {
+      margin: 0;
+      padding: 0;
+      font-family: arial, sans-serif;
+      font-size: 2em;
+      color: #111;
+      word-wrap: break-word; }
+    .notification .info p {
+      margin: 0;
+      padding: 0.2em 0;
+      font-family: arial, sans-serif;
+      font-size: 1.0em;
+      color: #666; }
+  .notification .side {
+    width: 0.6em;
+    border-radius: 0 3px 3px 0;
+    border-bottom: 0.3em solid; }
+  .notification .side {
+    background: #7f8c8d;
+    border-bottom-color: #667273; }
+  .notification.blue .side {
+    background: #2980b9;
+    border-bottom-color: #20638f; }
+  .notification.red .side {
+    background: #e74c3c;
+    border-bottom-color: #d62c1a; }
+  .notification.orange .side {
+    background: #f39c12;
+    border-bottom-color: #c87f0a; }
+  .notification.purple .side {
+    background: #9b59b6;
+    border-bottom-color: #804399; }
+  .notification.green .side {
+    background: #27ae60;
+    border-bottom-color: #1e8449; }
+  .notification.gray .side {
+    background: #95a5a6;
+    border-bottom-color: #798d8f; }
