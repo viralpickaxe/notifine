@@ -15,3 +15,12 @@ notifine *(pronounced [noh-tih-FH-hyne])* is a lightweight but powerful jQuery n
 
 ## Demo and Documentation
 [http://notifine.iamjamiedavies.com](http://notifine.iamjamiedavies.com)
+
+## License
+
+notifine is licensed under MIT http://www.opensource.org/licenses/MIT
+
+### Copyright
+
+Copyright (c) 2014, Jamie Davies
+<hello@iamjamiedavies.com>, [@viralpickaxe](http://twitter.com/viralpickaxe)
