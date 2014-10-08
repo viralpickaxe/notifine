@@ -43,6 +43,7 @@ window.Notifine = (function () {
         data.events.onclick = data.events.onclick || function(){return true;};
         data.events.onmouseenter = data.events.onmouseenter || function(){return true;};
         data.events.onmouseleave = data.events.onmouseleave || function(){return true;};
+        data.events.ondismiss = data.events.ondismiss || function(){return true;};
         if (typeof(data.time)==='undefined') { data.time = 5000; }
 
         var $notification = $('<div class="notifine-notification ' + data.type + '" style="display: none;"></div>');
@@ -62,7 +63,7 @@ window.Notifine = (function () {
           newnotif.timer = setTimeout("Notifine.destroy('" + newnotif.id + "')",data.time);
         }
 
-        console.log(newnotif);
+        Debug(newnotif,"log");
         return newnotif;
       } else {
         Debug("Invalid input to Notifine.create(). Must pass object","error");
@@ -72,8 +73,9 @@ window.Notifine = (function () {
     destroy: function (id) {
       if (typeof(Notifine.notifications[id]) === 'object'){
         if (typeof(Notifine.notifications[id].timer) !== 'undefined') {
-            clearTimeout(Notifine.notifications[id].timer);
+          clearTimeout(Notifine.notifications[id].timer);
         }
+        Notifine.notifications[id].events.ondismiss(Notifine.notifications[id]);
         delete Notifine.notifications[id];
         $(props.container).find('[data-id="' + id + '"]').fadeOut(200,function(){$(this).remove();})
         return true;
@@ -106,7 +108,7 @@ $(document).ready(function(){
   $('.notifine-notifications').on('click','.notifine-notification',function(){
     var id = $(this).attr('data-id');
     if (typeof(Notifine.notifications[id]) !== 'undefined') {
-      var evt = Notifine.notifications[id].events.onclick();
+      var evt = Notifine.notifications[id].events.onclick(Notifine.notifications[id]);
       if (evt) { Notifine.destroy(id); }
       return evt;
     } else {
@@ -116,7 +118,7 @@ $(document).ready(function(){
   $('.notifine-notifications').on('mouseenter','.notifine-notification',function(){
     var id = $(this).attr('data-id');
     if (typeof(Notifine.notifications[id]) !== 'undefined') {
-      var evt = Notifine.notifications[id].events.onmouseenter();
+      var evt = Notifine.notifications[id].events.onmouseenter(Notifine.notifications[id]);
       return evt;
     } else {
       return false;
@@ -125,7 +127,7 @@ $(document).ready(function(){
   $('.notifine-notifications').on('mouseleave','.notifine-notification',function(){
     var id = $(this).attr('data-id');
     if (typeof(Notifine.notifications[id]) !== 'undefined') {
-      var evt = Notifine.notifications[id].events.onmouseleave();
+      var evt = Notifine.notifications[id].events.onmouseleave(Notifine.notifications[id]);
       return evt;
     } else {
       return false;
