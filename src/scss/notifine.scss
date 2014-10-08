@@ -1,13 +1,15 @@
+$color_blue : #2980b9;
+$color_red : #e74c3c;
+$color_purple : #9b59b6;
+$color_orange : #f39c12;
+$color_green : #27ae60;
+$color_grey : #95a5a6;
+
 @mixin color($color) {
   .side {
     background: $color;
     border-bottom-color: darken($color, 10%);
   }
-}
-
-@mixin button($color) {
-  background: $color !important;
-  border-bottom-color: darken($color, 10%) !important;
 }
 
 @mixin transition($transition-property, $transition-time, $method) {
@@ -24,7 +26,7 @@
   bottom: 0.1em;
   right: 0.3em;
   max-width: 250px;
-  max-height: 90%;
+  max-height: 99%;
   overflow-y: scroll;
   overflow-x: hidden;
 }
@@ -77,24 +79,21 @@
     border-bottom: 0.3em solid;
   }
   
-  @include color(#7f8c8d);
+  @include color($color_grey);
   
   &.blue {
-    @include color(#2980b9);   
+    @include color($color_blue);   
   }
   &.red {
-    @include color(#e74c3c);
+    @include color($color_red);
   }
   &.orange {
-    @include color(#f39c12);
+    @include color($color_orange);
   }
   &.purple {
-    @include color(#9b59b6);
+    @include color($color_purple);
   }
   &.green {
-    @include color(#27ae60);
-  }
-  &.gray {
-    @include color(#95a5a6);
+    @include color($color_green);
   }
 }

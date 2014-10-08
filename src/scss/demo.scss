@@ -1,5 +1,20 @@
+$color_blue : #2980b9;
+$color_red : #e74c3c;
+$color_purple : #9b59b6;
+$color_orange : #f39c12;
+$color_green : #27ae60;
+$color_grey : #95a5a6;
+
+@mixin button($color) {
+  color: white;
+  background: $color;
+  &:hover {
+    background: lighten($color, 15%);
+  }
+}
+
 body {
-  background: #34495e;
+  background: #659ED6;
 }
 
 .content {
@@ -21,6 +36,16 @@ body {
   -moz-box-shadow: 1px 1px 2px 0px rgba(0,0,0,0.54);
   box-shadow: 1px 1px 2px 0px rgba(0,0,0,0.54);
   
+  a {
+    text-decoration: none;
+    border-bottom: 1px dotted black;
+    color: rgb(139, 139, 139);
+    &:hover {
+      border-bottom: 1px solid black;
+      color: black;
+    }
+  }
+
   h1,h2,h3,h4 {
     margin: 0;
   }
@@ -58,5 +83,33 @@ body {
   ul {
     font-size: 0.9em;
     padding-left: 2em;
+  }
+
+  button {
+    padding: 0.2em;
+    border: 0;
+    outline: 0;
+    &.blue {
+      @include button($color_blue);
+    }
+    &.red {
+      @include button($color_red);
+    }
+    &.orange {
+      @include button($color_orange);
+    }
+    &.purple {
+      @include button($color_purple);
+    }
+    &.green {
+      @include button($color_green);
+    }
+    &.grey {
+      @include button($color_grey);
+    }
+  }
+
+  .demo-simple {
+    font-size: 1.2em;
   }
 }

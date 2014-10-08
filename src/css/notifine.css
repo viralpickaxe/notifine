@@ -4,7 +4,7 @@
   bottom: 0.1em;
   right: 0.3em;
   max-width: 250px;
-  max-height: 90%;
+  max-height: 99%;
   overflow-y: scroll;
   overflow-x: hidden; }
 
@@ -70,8 +70,8 @@
     border-radius: 0 3px 3px 0;
     border-bottom: 0.3em solid; }
   .notifine-notification .side {
-    background: #7f8c8d;
-    border-bottom-color: #667273; }
+    background: #95a5a6;
+    border-bottom-color: #798d8f; }
   .notifine-notification.blue .side {
     background: #2980b9;
     border-bottom-color: #20638f; }
@@ -87,6 +87,3 @@
   .notifine-notification.green .side {
     background: #27ae60;
     border-bottom-color: #1e8449; }
-  .notifine-notification.gray .side {
-    background: #95a5a6;
-    border-bottom-color: #798d8f; }
