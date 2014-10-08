@@ -14,24 +14,48 @@ $('.demo-basic').click(function(){
   } else {
     var type = '';
   }
-  Notifine.create({
-    content: {
-      "title" : "This is a notification",
-      "body" : "This is the body content of a notification. I'm pretty good looking aren't I?"
-    },
-    type: type
-  });
+  var notification = Notifine.create(
+    {
+      content: {
+        "title" : "This is a notification",
+        "body" : "This is the body content of a notification. I'm pretty good looking aren't I?"
+      },
+      type: type
+    }
+  );
 });
 
 $('.demo-timing').click(function(){
-  Notifine.create({
-    content: {
-      "title" : "This is a notification",
-      "body" : "This is the body content of a notification. I'm pretty good looking aren't I?"
-    },
-    type: "blue",
-    time: parseInt($(this).attr('data-time'))
-  });
+  var notification = Notifine.create(
+    {
+      content: {
+        "title" : "This is a notification",
+        "body" : "This is the body content of a notification. I'm pretty good looking aren't I?"
+      },
+      type: "blue",
+      time: parseInt($(this).attr('data-time'))
+    }
+  );
+});
+
+window.Dismiss_Demos = [];
+$('.demo-dismiss').click(function(){
+  if($(this).attr('data-action')=='create'){
+    var notification = Notifine.create({
+      content: {
+        "title" : "This is a notification",
+        "body" : "This is the body content of a notification. Click me to dismiss, or press the dismiss notification button"
+      },
+      type: "blue",
+      time: 0
+    });
+    Dismiss_Demos.push(notification.id);
+  } else {
+    for (var i = 0; i < Dismiss_Demos.length; i++) {
+      Notifine.dismiss(Dismiss_Demos[i]);
+    };
+    Dismiss_Demos = [];
+  }
 });
 
 Notifine.create({

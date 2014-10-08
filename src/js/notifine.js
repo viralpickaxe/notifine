@@ -82,6 +82,9 @@ window.Notifine = (function () {
         return false;
       }
     },
+    dismiss: function (id) {
+      Notifine.destroy(id);
+    },
     load: function(setprops) {
       props.debugmode = setprops.debugmode || false;
 
