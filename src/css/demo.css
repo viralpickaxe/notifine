@@ -29,6 +29,8 @@ body {
     margin: 0; }
   .content h1 {
     font-size: 3em; }
+  .content h4 {
+    font-size: 1.1em; }
   .content .pronounced {
     color: #afafaf;
     font-size: 1.32em; }
@@ -50,9 +52,11 @@ body {
     font-size: 0.9em;
     padding-left: 2em; }
   .content button {
-    padding: 0.2em;
+    cursor: pointer;
+    padding: 0.3em 0.4em;
     border: 0;
-    outline: 0; }
+    outline: 0;
+    font-size: 1.2em; }
     .content button.blue {
       color: white;
       background: #2980b9; }
@@ -83,5 +87,26 @@ body {
       background: #95a5a6; }
       .content button.grey:hover {
         background: #bfc8c9; }
-  .content .demo-simple {
-    font-size: 1.2em; }
+  .content .codeblock {
+    width: 100%;
+    padding: 10px;
+    background: #DAEDFF;
+    border: 1px solid #CDE6FF;
+    border-radius: 2px;
+    font-size: 0.8em;
+    color: black;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box; }
+    .content .codeblock .blue {
+      color: #2980b9; }
+    .content .codeblock .red {
+      color: #e74c3c; }
+    .content .codeblock .orange {
+      color: #f39c12; }
+    .content .codeblock .purple {
+      color: #9b59b6; }
+    .content .codeblock .green {
+      color: #27ae60; }
+    .content .codeblock .grey {
+      color: #95a5a6; }
