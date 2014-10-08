@@ -46,7 +46,7 @@ window.Notifine = (function () {
         if (typeof(data.time)==='undefined') { data.time = 5000; }
 
         var $notification = $('<div class="notifine-notification ' + data.type + '" style="display: none;"></div>');
-        var $notification_content = $('<div class="info"><h1>' + data.content.title + '</h1><p>' + data.content.body + '</p></div><div class="side"></div>');
+        var $notification_content = $('<div class="info"><h1>' + data.content.title + '</h1><p>' + data.content.body + '</p></div><div class="side"><br></div>');
 
         var newnotif = data;
         newnotif.id = GenerateID();

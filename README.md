@@ -12,3 +12,15 @@ notifine *(pronounced [noh-tih-FH-hyne])* is a lightweight but powerful jQuery n
 * The look, positioning and behaviour of the notifications are fully customizable 
 * Event callbacks for many different actions
 * Simple but powerful API for creating, detecting and destroying notifications easily
+
+## Demo and Documentation
+[http://notifine.iamjamiedavies.com](http://notifine.iamjamiedavies.com)
+
+## License
+
+notifine is licensed under MIT http://www.opensource.org/licenses/MIT
+
+## Copyright
+
+Copyright (c) 2014, Jamie Davies 
+<hello@iamjamiedavies.com>, [@viralpickaxe](http://twitter.com/viralpickaxe)

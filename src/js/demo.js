@@ -1,18 +1,25 @@
-$('.trigger').click(function(){
-  var colours = ["","blue","red","orange","purple","green"];
-  var bodys = [
-    "You have been notified",
-    "You have a new follower! Feel the fame flow through your vains!",
-    "Windows 10 represents the first step of a whole new generation of Windows. Windows 10 unlocks new experiences for customers to work, play and connect.",
-    "Bicycle 2.4 km, 8 min. Use caution - may involve errors or sections not suited for bicyclings. ya content."
-  ];
-
+$('.demo-simple').click(function(){
+  if($(this).is('.blue')){
+    var type = 'blue';
+  } else if($(this).is('.red')){
+    var type = 'red';
+  } else if($(this).is('.orange')){
+    var type = 'orange';
+  } else if($(this).is('.purple')){
+    var type = 'purple';
+  } else if($(this).is('.green')){
+    var type = 'green';
+  } else if($(this).is('.grey')){
+    var type = 'grey';
+  } else {
+    var type = '';
+  }
   Notifine.create({
     content: {
       "title" : "This is a notification",
-      "body" : bodys[Math.floor(Math.random() * bodys.length)]
+      "body" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
     },
-    type: colours[Math.floor(Math.random() * colours.length)]
+    type: type
   });
 });
 
