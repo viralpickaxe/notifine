@@ -44,15 +44,46 @@
 
       <hr>
 
-      <section id="demos">
-        <h3>Examples</h3>
-        <p>notifine comes with 6 different types/colours of notifications</p>
-        <button class="demo-simple blue">blue</button>
-        <button class="demo-simple red">red</button>
-        <button class="demo-simple orange">orange</button>
-        <button class="demo-simple purple">purple</button>
-        <button class="demo-simple green">green</button>
-        <button class="demo-simple grey">grey</button>
+      <section id="documentation">
+        <h3>Documentation</h3>
+        <br>
+        <h4>Basic Notifications</h4>
+        <p>These are the most basic type of notification that you can create. notifine comes with 6 different types/colours of notifications. By default the notification will dismiss after 3000ms (or until clicked). If a type is not specified it will create a grey type notification.</p>
+        <button class="demo-basic blue">blue</button>
+        <button class="demo-basic red">red</button>
+        <button class="demo-basic orange">orange</button>
+        <button class="demo-basic purple">purple</button>
+        <button class="demo-basic green">green</button>
+        <button class="demo-basic grey">grey</button>
+        <div class="codeblock">
+          <span class="grey">$(...).click(function(){</span><br>
+            &emsp;&emsp;Notifine.create({<br>
+              &emsp;&emsp;&emsp;&emsp;content : {<br>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"title" : <span class="purple">"This is a notification"</span>,<br>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"body" : <span class="purple">"This is the body content of a notification."</span><br>
+              &emsp;&emsp;&emsp;&emsp;},<br>
+              &emsp;&emsp;&emsp;&emsp;type : <span class="purple">"purple"</span> <span class="grey">// Works for any colour class added</span><br>
+            &emsp;&emsp;});<br>
+          <span class="grey">});</span>
+        </div>
+        <br>
+        <h4>Timing Notifications</h4>
+        <p>If you do not define a "time" item in the Notifine.create() object, the notification will just self dismiss after 3000ms. Simply set time equal to the amount of miliseconds you want before it dismisses. By setting the time to 0, the notification will not dismiss until it is clicked.</p>
+        <button class="demo-timing blue" data-time=2000>I will dismiss after 2 seconds</button>
+        <button class="demo-timing blue" data-time=5000>I will dimiss after 5 seconds</button>
+        <button class="demo-timing blue" data-time=0>I will not dismiss until clicked</button>
+        <div class="codeblock">
+          <span class="grey">$(...).click(function(){</span><br>
+            &emsp;&emsp;Notifine.create({<br>
+              &emsp;&emsp;&emsp;&emsp;content : {<br>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"title" : "This is a notification",<br>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"body" : "This is the body content of a notification."<br>
+              &emsp;&emsp;&emsp;&emsp;},<br>
+              &emsp;&emsp;&emsp;&emsp;type : "blue",<br>
+              &emsp;&emsp;&emsp;&emsp;time : <span class="purple">5000</span><br>
+            &emsp;&emsp;});<br>
+          <span class="grey">});</span>
+        </div>
       </section>
 
       <hr>

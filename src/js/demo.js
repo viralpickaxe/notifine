@@ -1,4 +1,4 @@
-$('.demo-simple').click(function(){
+$('.demo-basic').click(function(){
   if($(this).is('.blue')){
     var type = 'blue';
   } else if($(this).is('.red')){
@@ -17,9 +17,20 @@ $('.demo-simple').click(function(){
   Notifine.create({
     content: {
       "title" : "This is a notification",
-      "body" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+      "body" : "This is the body content of a notification. I'm pretty good looking aren't I?"
     },
     type: type
+  });
+});
+
+$('.demo-timing').click(function(){
+  Notifine.create({
+    content: {
+      "title" : "This is a notification",
+      "body" : "This is the body content of a notification. I'm pretty good looking aren't I?"
+    },
+    type: "blue",
+    time: parseInt($(this).attr('data-time'))
   });
 });
 

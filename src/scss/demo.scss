@@ -54,6 +54,10 @@ body {
     font-size: 3em;
   }
 
+  h4 {
+    font-size: 1.1em;
+  }
+
   .pronounced {
     color: rgb(175, 175, 175);
     font-size: 1.32em;
@@ -86,9 +90,11 @@ body {
   }
 
   button {
-    padding: 0.2em;
+    cursor: pointer;
+    padding: 0.3em 0.4em;
     border: 0;
     outline: 0;
+    font-size: 1.2em;
     &.blue {
       @include button($color_blue);
     }
@@ -109,7 +115,37 @@ body {
     }
   }
 
-  .demo-simple {
-    font-size: 1.2em;
+  .codeblock {
+    width: 100%;
+    padding: 10px;
+
+    background: #DAEDFF;
+    border: 1px solid #CDE6FF;
+    border-radius: 2px;
+
+    font-size: 0.8em;
+    color: black;
+
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    .blue {
+      color: $color_blue;
+    }
+    .red {
+      color: $color_red;
+    }
+    .orange {
+      color: $color_orange;
+    }
+    .purple {
+      color: $color_purple;
+    }
+    .green {
+      color: $color_green;
+    }
+    .grey {
+      color: $color_grey;
+    }
   }
 }
