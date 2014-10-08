@@ -77,6 +77,10 @@ Notifine.create({
     onmouseleave : function () {
       console.log('mouse leave');
       return true;
+    },
+    ondismiss : function () {
+      console.log('dismissed');
+      return true;
     }
   }
 });

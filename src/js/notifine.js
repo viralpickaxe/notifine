@@ -43,6 +43,7 @@ window.Notifine = (function () {
         data.events.onclick = data.events.onclick || function(){return true;};
         data.events.onmouseenter = data.events.onmouseenter || function(){return true;};
         data.events.onmouseleave = data.events.onmouseleave || function(){return true;};
+        data.events.ondismiss = data.events.ondismiss || function(){return true;};
         if (typeof(data.time)==='undefined') { data.time = 5000; }
 
         var $notification = $('<div class="notifine-notification ' + data.type + '" style="display: none;"></div>');
@@ -62,7 +63,7 @@ window.Notifine = (function () {
           newnotif.timer = setTimeout("Notifine.destroy('" + newnotif.id + "')",data.time);
         }
 
-        console.log(newnotif);
+        Debug(newnotif,"log");
         return newnotif;
       } else {
         Debug("Invalid input to Notifine.create(). Must pass object","error");
@@ -72,8 +73,9 @@ window.Notifine = (function () {
     destroy: function (id) {
       if (typeof(Notifine.notifications[id]) === 'object'){
         if (typeof(Notifine.notifications[id].timer) !== 'undefined') {
-            clearTimeout(Notifine.notifications[id].timer);
+          clearTimeout(Notifine.notifications[id].timer);
         }
+        Notifine.notifications[id].events.ondismiss();
         delete Notifine.notifications[id];
         $(props.container).find('[data-id="' + id + '"]').fadeOut(200,function(){$(this).remove();})
         return true;
