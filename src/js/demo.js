@@ -66,19 +66,23 @@ Notifine.create({
   type : "orange",
   time : 0,
   events : {
-    onclick : function () {
+    onclick : function (notification) {
+      console.log(notification);
       console.log('clicked');
       return false; // So it cannot be dismissed
     },
-    onmouseenter : function () {
+    onmouseenter : function (notification) {
+      console.log(notification);
       console.log('mouse enter');
       return true;
     },
-    onmouseleave : function () {
+    onmouseleave : function (notification) {
+      console.log(notification);
       console.log('mouse leave');
       return true;
     },
-    ondismiss : function () {
+    ondismiss : function (notification) {
+      console.log(notification);
       console.log('dismissed');
       return true;
     }
