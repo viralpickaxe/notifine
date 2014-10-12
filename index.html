@@ -35,7 +35,7 @@
 
         <h3>Will it slow me down?</h3>
         <p>
-          No of course not! notifine was created so that you don't have to worry about having to create a whole seperate system just to give the user feedback. Our API is super easy to use and implement, and once you get the hang of it you can take advantage of all the more advanced features that notifine has.
+          No of course not! notifine was created so that you don't have to worry about having to create a whole seperate system just to give the user feedback. The API is super easy to use and implement, and once you get the hang of it you can take advantage of all the more advanced features that notifine has.
         </p>
         <p>
           notifine's js is 3kb compressed (4kb uncompressed), and it's default css is 2kb compressed & uncompressed (scss)
@@ -49,7 +49,7 @@
         
         <br>
 
-        <h4>Basic Notifications</h4>
+        <h4>Creating Notifications</h4>
         <p>These are the most basic type of notification that you can create. notifine comes with 6 different types/colours of notifications. By default the notification will dismiss after 3000ms (or until clicked). If a type is not specified it will create a grey type notification.</p>
         <button class="demo-basic blue">blue</button>
         <button class="demo-basic red">red</button>
@@ -86,6 +86,17 @@
 
         <br>
 
+        <h4>Dismiss Notifications</h4>
+        <p>As well as using timings or onclick to dismiss notifications, you can use a function. Just call Notifine.dismiss(notificationid) with a notificationid (the 5 character long string that gets returned from Notifine.create()).</p>
+        <button class="demo-dismiss blue" data-action="create">Create Notification</button>
+        <button class="demo-dismiss blue" data-action="dismiss">Dismiss Notification</button>
+        <div class="codeblock">
+          Notifine.dismiss(<span class="purple">"0x7r9"</span>);<br>
+          <span class="grey">// Does the same thing as Notifine.destroy("0x7r9");</span>
+        </div>
+
+        <br>
+
         <h4>Timing Notifications</h4>
         <p>If you do not define a "time" item in the Notifine.create() object, the notification will just self dismiss after 3000ms. Simply set time equal to the amount of miliseconds you want before it dismisses. By setting the time to 0, the notification will not dismiss until it is clicked.</p>
         <button class="demo-timing blue" data-time=2000>I will dismiss after 2 seconds</button>
@@ -110,16 +121,43 @@
 
         <h4>Event Callback Notifications</h4>
         <p>One of the awesome upsides to using notifine, is that you have access to a few event callbacks for individual notifications.</p>
-        
-        <br>
-
-        <h4>Dismiss/Destroy Notifications</h4>
-        <p>As well as using timings or onclick to dismiss notifications, you can use a function. Just call Notifine.dismiss(notificationid) with a notificationid (the 5 character long string that gets returned from Notifine.create()).</p>
-        <button class="demo-dismiss blue" data-action="create">Create Notification</button>
-        <button class="demo-dismiss blue" data-action="dismiss">Dismiss Notification</button>
+        <button class="demo-event blue">Create Notification</button><br>
+        <strong>Event Log</strong>
+        <ul class="demo-event-log"></ul>
         <div class="codeblock">
-          Notifine.dismiss(<span class="purple">"0x7r9"</span>);<br>
-          <span class="grey">// Does the same thing as Notifine.destroy("0x7r9");</span>
+          <span class="grey">$(...).click(function(){</span><br>
+            &emsp;&emsp;var notification = Notifine.create(<br>
+              &emsp;&emsp;&emsp;&emsp;{<br>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;content : {<br>
+                  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;title : "Notification title",<br>
+                  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;body : "Notification body"<br>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;},<br>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;type : "orange",<br>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<span class="purple">events : {<br>
+                  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;onclick : function (notification) {<br>
+                    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<span class="grey">// Do stuff</span><br>
+                    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;return true; <span class="grey">// Can return false to not dismiss notification</span><br>
+                  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;},<br>
+                  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;onmouseenter : function (notification) {<br>
+                    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<span class="grey">// Do stuff</span><br>
+                    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;return true;<br>
+                  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;},<br>
+                  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;onmouseleave : function (notification) {<br>
+                    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<span class="grey">// Do stuff</span><br>
+                    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;return true;<br>
+                  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;},<br>
+                  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;onready : function (notification) {<br>
+                    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<span class="grey">// Do stuff</span><br>
+                    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;return true;<br>
+                  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;},<br>
+                  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;ondismiss : function (notification) {<br>
+                    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<span class="grey">// Do stuff</span><br>
+                    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;return true;<br>
+                  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;}<br>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;}</span><br>
+              &emsp;&emsp;&emsp;&emsp;}<br>
+            &emsp;&emsp;);<br>
+          <span class="grey">});</span>
         </div>
       </section>
 

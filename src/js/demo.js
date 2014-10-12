@@ -58,33 +58,41 @@ $('.demo-dismiss').click(function(){
   }
 });
 
-Notifine.create({
-  content : {
-    title : "Awesome Notification!",
-    body : "This notification cannot be dismissed! It also has event listeners for, click, mouse enter and mouse leave."
-  },
-  type : "orange",
-  time : 0,
-  events : {
-    onclick : function (notification) {
-      console.log(notification);
-      console.log('clicked');
-      return false; // So it cannot be dismissed
-    },
-    onmouseenter : function (notification) {
-      console.log(notification);
-      console.log('mouse enter');
-      return true;
-    },
-    onmouseleave : function (notification) {
-      console.log(notification);
-      console.log('mouse leave');
-      return true;
-    },
-    ondismiss : function (notification) {
-      console.log(notification);
-      console.log('dismissed');
-      return true;
+$('.demo-event').click(function(){
+  var notification = Notifine.create(
+    {
+      content : {
+        title : "Awesome Notification!",
+        body : "This notification has event listeners for, click, mouse enter, mouse leave and dismiss. Try interact with it."
+      },
+      type : "orange",
+      events : {
+        onclick : function (notification) {
+          demo_event_log('clicked',notification);
+          return true;
+        },
+        onmouseenter : function (notification) {
+          demo_event_log('mouse enter',notification);
+          return true;
+        },
+        onmouseleave : function (notification) {
+          demo_event_log('mouse leave',notification);
+          return true;
+        },
+        onready : function (notification) {
+          demo_event_log('ready',notification);
+          return true;
+        },
+        ondismiss : function (notification) {
+          demo_event_log('dismissed',notification);
+          return true;
+        }
+      }
     }
-  }
+  );
 });
+
+function demo_event_log(eventText,notification){
+  $('.demo-event-log').append('<li>' + eventText + ' <i>(ID: ' + notification.id + ')</i></li>');
+  $('.demo-event-log').scrollTop($('.demo-event-log')[0].scrollHeight);
+}
