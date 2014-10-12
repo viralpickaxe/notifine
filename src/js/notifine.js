@@ -43,6 +43,7 @@ window.Notifine = (function () {
         data.events.onclick = data.events.onclick || function(){return true;};
         data.events.onmouseenter = data.events.onmouseenter || function(){return true;};
         data.events.onmouseleave = data.events.onmouseleave || function(){return true;};
+        data.events.onready = data.events.onready || function(){return true;};
         data.events.ondismiss = data.events.ondismiss || function(){return true;};
         if (typeof(data.time)==='undefined') { data.time = 5000; }
 
@@ -56,7 +57,7 @@ window.Notifine = (function () {
 
         $notification.attr('data-id',newnotif.id).html($notification_content);
 
-        $(props.container).append($notification).children().last().fadeIn(300);
+        $(props.container).append($notification).children().last().fadeIn(300,function(id){Notifine.notifications[id].events.onready(Notifine.notifications[id]);}(newnotif.id));
         $(props.container).scrollTop($(props.container)[0].scrollHeight);
 
         if(data.time>0){

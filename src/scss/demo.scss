@@ -95,6 +95,7 @@ body {
     border: 0;
     outline: 0;
     font-size: 1em;
+    margin-bottom: 5px;
     &.blue {
       @include button($color_blue);
     }
@@ -112,6 +113,20 @@ body {
     }
     &.grey {
       @include button($color_grey);
+    }
+  }
+
+  .demo-event-log {
+    list-style-type: none;
+    padding-left: 0;
+    height: 100px;
+    margin-top: 0;
+    border: 1px solid black;
+    border-radius: 2px;
+    overflow: scroll;
+    li {
+      padding: 2px;
+      padding-left: 5px;
     }
   }
 
