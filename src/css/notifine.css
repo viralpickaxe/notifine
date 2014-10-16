@@ -6,7 +6,8 @@
   max-width: 250px;
   max-height: 99%;
   overflow-y: scroll;
-  overflow-x: hidden; }
+  overflow-x: hidden;
+  z-index: 9999998; }
 
 .notifine-notification {
   font-size: 9px; }
@@ -38,7 +39,7 @@
   max-width: 350px;
   min-height: 70px;
   cursor: pointer;
-  z-index: 9999; }
+  z-index: 9999999; }
   .notifine-notification:hover {
     opacity: 0.4;
     -webkit-transition: opacity 0.2s ease;
