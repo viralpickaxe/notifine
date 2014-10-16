@@ -1,9 +1,9 @@
-$color_blue : #2980b9;
-$color_red : #e74c3c;
-$color_purple : #9b59b6;
-$color_orange : #f39c12;
-$color_green : #27ae60;
-$color_grey : #95a5a6;
+$notifine_blue : #2980b9;
+$notifine_red : #e74c3c;
+$notifine_purple : #9b59b6;
+$notifine_orange : #f39c12;
+$notifine_green : #27ae60;
+$notifine_grey : #95a5a6;
 
 @mixin color($color) {
   .side {
@@ -29,6 +29,7 @@ $color_grey : #95a5a6;
   max-height: 99%;
   overflow-y: scroll;
   overflow-x: hidden;
+  z-index: 9999998;
 }
 
 .notifine-notification{font-size:9px;}
@@ -42,7 +43,7 @@ $color_grey : #95a5a6;
   max-width: 350px;
   min-height: 70px;
   cursor: pointer;
-  z-index: 9999;
+  z-index: 9999999;
   &:hover {
     opacity: 0.4;
     @include transition(opacity,0.2s,ease);
@@ -79,21 +80,21 @@ $color_grey : #95a5a6;
     border-bottom: 0.3em solid;
   }
   
-  @include color($color_grey);
+  @include color($notifine_grey);
   
   &.blue {
-    @include color($color_blue);   
+    @include color($notifine_blue);   
   }
   &.red {
-    @include color($color_red);
+    @include color($notifine_red);
   }
   &.orange {
-    @include color($color_orange);
+    @include color($notifine_orange);
   }
   &.purple {
-    @include color($color_purple);
+    @include color($notifine_purple);
   }
   &.green {
-    @include color($color_green);
+    @include color($notifine_green);
   }
 }
