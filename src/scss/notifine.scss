@@ -27,8 +27,6 @@ $notifine_grey : #95a5a6;
   right: 0.3em;
   max-width: 250px;
   max-height: 99%;
-  overflow-y: scroll;
-  overflow-x: hidden;
   z-index: 9999998;
 }
 
@@ -45,7 +43,7 @@ $notifine_grey : #95a5a6;
   cursor: pointer;
   z-index: 9999999;
   &:hover {
-    opacity: 0.4;
+    opacity: 0.9;
     @include transition(opacity,0.2s,ease);
   }
 
@@ -71,6 +69,14 @@ $notifine_grey : #95a5a6;
       font-family: arial, sans-serif;
       font-size: 1.3em;
       color: #666;
+    }
+
+    a {
+      color: blue;
+      text-decoration: none;
+      &:hover {
+        border-bottom: 1px dotted blue;
+      }
     }
   }
   
